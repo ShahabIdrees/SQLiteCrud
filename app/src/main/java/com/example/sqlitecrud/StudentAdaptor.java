@@ -1,6 +1,9 @@
 package com.example.sqlitecrud;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +41,27 @@ public class StudentAdaptor extends ArrayAdapter<StudentModel> {
             @Override
             public void onClick(View view) {
 
+
+                AlertDialog delete_entry = new AlertDialog.Builder(context)
+                        .setTitle("Delete Student")
+                        .setMessage("Are you sure you want to delete this Student?")
+
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+
+
+                /*Intent delbtn = new Intent(StudentAdaptor.this,);
                 DBHelper dbHelper = new DBHelper(getContext());
-                /*dbHelper.Delete(roll);
+                dbHelper.Delete(roll);
                 remove(list);*/
 
             }
