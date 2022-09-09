@@ -50,6 +50,13 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(STUDENT_TABLE, null, cv);
         db.close();
     }
+    public void  deleteStudent(int ID)
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(STUDENT_TABLE, "StudentID = " + ID ,  null);
+        db.close();
+    }
     @SuppressLint("Range")
     public ArrayList<StudentModel> getAllStudents() {
 

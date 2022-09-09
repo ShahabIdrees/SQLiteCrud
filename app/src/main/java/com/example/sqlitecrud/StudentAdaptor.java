@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,7 +49,10 @@ public class StudentAdaptor extends ArrayAdapter<StudentModel> {
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // Continue with delete operation
+                                DBHelper dbHelper = new DBHelper(getContext());
+                                dbHelper.deleteStudent(list.rollNmber);
+                                remove(list);
+                                Toast.makeText(context, "Student Deleted", Toast.LENGTH_SHORT).show();
                             }
                         })
 
@@ -59,7 +63,7 @@ public class StudentAdaptor extends ArrayAdapter<StudentModel> {
 
 
 
-                /*Intent delbtn = new Intent(StudentAdaptor.this,);
+                /*
                 DBHelper dbHelper = new DBHelper(getContext());
                 dbHelper.Delete(roll);
                 remove(list);*/
