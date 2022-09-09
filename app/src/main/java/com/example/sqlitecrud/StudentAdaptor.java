@@ -32,7 +32,7 @@ public class StudentAdaptor extends ArrayAdapter<StudentModel> {
         Button Update = convertView.findViewById(R.id.button);
         Name.setText(list.getName());
 
-        Rollnum.setText(list.getRollNmber());
+        Rollnum.setText(String.valueOf(list.getRollNmber()));
 
         del.setOnClickListener(new View.OnClickListener() {
             @Override

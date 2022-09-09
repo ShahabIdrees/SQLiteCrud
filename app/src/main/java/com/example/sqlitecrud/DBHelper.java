@@ -1,5 +1,6 @@
 package com.example.sqlitecrud;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -49,6 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(STUDENT_TABLE, null, cv);
         db.close();
     }
+    @SuppressLint("Range")
     public ArrayList<StudentModel> getAllStudents() {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -61,8 +63,8 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursorCourses.moveToFirst()) {
             do {
 
-                studentArrayList.add(new StudentModel(cursorCourses.getString(2),
-                        cursorCourses.getInt(3)));
+                studentArrayList.add(new StudentModel(cursorCourses.getString(1),
+                        cursorCourses.getInt(2)));
             } while (cursorCourses.moveToNext());
 
         }
