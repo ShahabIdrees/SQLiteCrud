@@ -1,10 +1,12 @@
 package com.example.sqlitecrud;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +18,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String STUDENT_ID = "StudentID";
     public static final String STUDENT_NAME = "StudentName";
     public static final String STUDENT_ROLL = "StudentRollNumber";
-    public static final String STUDENT_ENROLL = "IsEnrolled";
     public static final String STUDENT_TABLE = "StudentTable";
 
 
@@ -28,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createTableSTatement = "CREATE TABLE " + STUDENT_TABLE + "(" +
                 STUDENT_ID + " Integer PRIMARY KEY AUTOINCREMENT, " + STUDENT_NAME + " Text, "
-                + STUDENT_ROLL + " Int, " + STUDENT_ENROLL + " BOOL) ";
+                + STUDENT_ROLL + " Int) ";
         sqLiteDatabase.execSQL(createTableSTatement);
     }
 
@@ -36,14 +37,15 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-    public void  addStudent(StudentModel STUDENTModel) {
+    public void  addStudent(StudentModel STUDENTModel)
+    {
+
         SQLiteDatabase db = this.getWritableDatabase();
         //Hash map, as we did in bundles
         ContentValues cv = new ContentValues();
 
         cv.put(STUDENT_NAME, STUDENTModel.getName());
         cv.put(STUDENT_ROLL, STUDENTModel.getRollNmber());
-        cv.put(STUDENT_ENROLL, STUDENTModel.isEnroll());
         db.insert(STUDENT_TABLE, null, cv);
         db.close();
     }
@@ -59,9 +61,8 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursorCourses.moveToFirst()) {
             do {
 
-                studentArrayList.add(new StudentModel(cursorCourses.getString(1),
-                        cursorCourses.getInt(2),
-                        cursorCourses.getInt(3) == 1 ? true : false));
+                studentArrayList.add(new StudentModel(cursorCourses.getString(2),
+                        cursorCourses.getInt(3)));
             } while (cursorCourses.moveToNext());
 
         }

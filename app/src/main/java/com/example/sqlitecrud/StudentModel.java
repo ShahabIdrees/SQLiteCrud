@@ -1,23 +1,19 @@
 package com.example.sqlitecrud;
 
 public class StudentModel {
-    private String name;
-    private int rollNmber;
-    private boolean isEnroll;
+    public String name;
+    public int rollNmber;
 
-    @Override
+    /*@Override
     public String toString() {
         return "StudentModel{" +
                 "name='" + name + '\'' +
-                ", rollNmber=" + rollNmber +
-                ", isEnroll=" + isEnroll +
-                '}';
-    }
+                ", rollNmber=" + rollNmber }';
+    }*/
 
-    public StudentModel(String name, int rollNmber, boolean isEnroll) {
+    public StudentModel(String name, int rollNmber) {
         this.name = name;
         this.rollNmber = rollNmber;
-        this.isEnroll = isEnroll;
     }
 
     public String getName() {
@@ -36,11 +32,4 @@ public class StudentModel {
         this.rollNmber = rollNmber;
     }
 
-    public boolean isEnroll() {
-        return isEnroll;
-    }
-
-    public void setEnroll(boolean enroll) {
-        isEnroll = enroll;
-    }
 }

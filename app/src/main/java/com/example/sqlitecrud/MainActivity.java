@@ -24,15 +24,14 @@ public class MainActivity extends AppCompatActivity {
         Button ViewAll = findViewById(R.id.buttonViewAll);
         TextView Name = findViewById(R.id.editTextName);
         TextView RollNum = findViewById(R.id.editTextRollNumber);
-        Switch IsEnrolled = findViewById(R.id.switchStudent);
         ListView listViewStudent = findViewById(R.id.listViewStudent);
         Add.setOnClickListener(new View.OnClickListener() {
             StudentModel studentModel;
-
             @Override
             public void onClick(View v) {
+
                 try {
-                    studentModel = new StudentModel(Name.getText().toString(), Integer.parseInt(RollNum.getText().toString()), IsEnrolled.isChecked());
+                    studentModel = new StudentModel(Name.getText().toString(), Integer.parseInt(RollNum.getText().toString()));
                     //Toast.makeText(MainActivity.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
@@ -40,16 +39,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 DBHelper dbHelper  = new DBHelper(MainActivity.this);
                 dbHelper.addStudent(studentModel);
+                Toast.makeText(MainActivity.this, "Student Added", Toast.LENGTH_SHORT).show();
             }
         });
         ViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "ViewAll Clicked", Toast.LENGTH_SHORT).show();
                 DBHelper dbHelper = new DBHelper(MainActivity.this);
                 ArrayList<StudentModel> list = dbHelper.getAllStudents();
-                StudentBaseAdaptor arrayAdapter = new StudentBaseAdaptor(MainActivity.this,list);
+                StudentAdaptor arraylistAdapter = new StudentAdaptor(MainActivity.this,list);
+                ListView listView = findViewById(R.id.listViewStudent);
 
-                listViewStudent.setAdapter(arrayAdapter);
+                listView.setAdapter(arraylistAdapter);
+
 
             }
         });
