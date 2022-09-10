@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     try {
                         studentModel = new StudentModel(Name.getText().toString(), Integer.parseInt(RollNum.getText().toString()));
-                        Toast.makeText(MainActivity.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
+
                     }
                     catch (Exception e){
                         Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
