@@ -54,8 +54,12 @@ public class DBHelper extends SQLiteOpenHelper {
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(STUDENT_TABLE, "StudentID = " + ID ,  null);
+        String deleteQuery = "DELETE FROM " + STUDENT_TABLE + " WHERE " + STUDENT_ROLL + " = " + ID;
+        db.execSQL(deleteQuery);
         db.close();
+    }
+    public void updateStudent(){
+
     }
     @SuppressLint("Range")
     public ArrayList<StudentModel> getAllStudents() {

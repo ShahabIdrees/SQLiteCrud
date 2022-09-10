@@ -29,17 +29,26 @@ public class MainActivity extends AppCompatActivity {
             StudentModel studentModel;
             @Override
             public void onClick(View v) {
+                if(Name.getText().toString().isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please Enter a name", Toast.LENGTH_LONG).show();
+                }
+                else if(RollNum.getText().toString().isEmpty()){
+                    Toast.makeText(MainActivity.this, "Please Enter a Roll Number", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    try {
+                        studentModel = new StudentModel(Name.getText().toString(), Integer.parseInt(RollNum.getText().toString()));
+                        Toast.makeText(MainActivity.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                    catch (Exception e){
+                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                    DBHelper dbHelper  = new DBHelper(MainActivity.this);
+                    dbHelper.addStudent(studentModel);
+                    Toast.makeText(MainActivity.this, "Student Added", Toast.LENGTH_SHORT).show();
+                }
 
-                try {
-                    studentModel = new StudentModel(Name.getText().toString(), Integer.parseInt(RollNum.getText().toString()));
-                    //Toast.makeText(MainActivity.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
-                }
-                catch (Exception e){
-                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                }
-                DBHelper dbHelper  = new DBHelper(MainActivity.this);
-                dbHelper.addStudent(studentModel);
-                Toast.makeText(MainActivity.this, "Student Added", Toast.LENGTH_SHORT).show();
+
             }
         });
         ViewAll.setOnClickListener(new View.OnClickListener() {
