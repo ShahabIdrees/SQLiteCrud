@@ -37,7 +37,8 @@ public class StudentAdaptor extends ArrayAdapter<StudentModel> {
         Name.setText(list.getName());
 
         Rollnum.setText(String.valueOf(list.getRollNmber()));
-
+        String name = list.getName();
+        String roll= String.valueOf(list.getRollNmber());
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,16 +62,9 @@ public class StudentAdaptor extends ArrayAdapter<StudentModel> {
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
 
-
-
-                /*
-                DBHelper dbHelper = new DBHelper(getContext());
-                dbHelper.Delete(roll);
-                remove(list);*/
-
             }
         });
-        /*Update.setOnClickListener(new View.OnClickListener() {
+        Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -80,7 +74,7 @@ public class StudentAdaptor extends ArrayAdapter<StudentModel> {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
-        });*/
+        });
 
         return convertView;
     }
